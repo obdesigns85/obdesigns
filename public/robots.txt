@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://obdesigns.vercel.app/sitemap.xml
+Sitemap: https://obdesigns.com.ng/sitemap.xml
