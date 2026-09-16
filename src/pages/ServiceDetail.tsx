@@ -38,9 +38,9 @@ export default function ServiceDetail({ slug }: { slug: string }) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://obdesigns.vercel.app/" },
-      { "@type": "ListItem", position: 2, name: "Services", item: "https://obdesigns.vercel.app/services" },
-      { "@type": "ListItem", position: 3, name: service?.heading ?? "Service", item: `https://obdesigns.vercel.app/${slug}` },
+{ "@type": "ListItem", position: 1, name: "Home", item: `${business.siteUrl}/` },
+      { "@type": "ListItem", position: 2, name: "Services", item: `${business.siteUrl}/services` },
+      { "@type": "ListItem", position: 3, name: service?.heading ?? "Service", item: `${business.siteUrl}/${slug}` },
     ],
   });
 
