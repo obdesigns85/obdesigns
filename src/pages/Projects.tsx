@@ -7,8 +7,7 @@ import BeforeAfterSlider from "../components/BeforeAfterSlider";
 import { useSEO } from "../lib/useDocumentTitle";
 import "../styles/projects.css";
 
-const filters: ("All" | ProjectCategory)[] = ["All", "Painting", "Screeding", "POP Installations", "Interiors", "Exteriors"];
-
+const filters: ("All" | ProjectCategory)[] = ["All", "Painting", "Screeding", "POP Installations", "Interiors", "Exteriors", "Wall Paneling"];
 export default function Projects() {
   useSEO({
     title: "Our Projects | OB Designs & Interiors Portfolio",
