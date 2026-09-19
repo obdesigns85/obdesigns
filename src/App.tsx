@@ -1,22 +1,22 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Nav from "./components/Nav";
+import ScrollToTop from "./components/ScrollToTop";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import Consultation from "./pages/Consultation";
 import Contact from "./pages/Contact";
 import ServicesHub from "./pages/ServicesHub";
 import ServiceDetail from "./pages/ServiceDetail";
-import RealEstate from "./pages/RealEstate";
 import NotFound from "./pages/NotFound";
 
 export default function App() {
   return (
     <BrowserRouter>
       <Nav />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<ServicesHub />} />
-        <Route path="/real-estate" element={<RealEstate />} />
         <Route path="/painters-in-nigeria" element={<ServiceDetail slug="painters-in-nigeria" />} />
         <Route path="/house-painting-services-nigeria" element={<ServiceDetail slug="house-painting-services-nigeria" />} />
         <Route path="/exterior-painting-nigeria" element={<ServiceDetail slug="exterior-painting-nigeria" />} />
