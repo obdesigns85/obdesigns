@@ -9,6 +9,7 @@ import ServicesHub from "./pages/ServicesHub";
 import ServiceDetail from "./pages/ServiceDetail";
 import RealEstate from "./pages/RealEstate";
 import NotFound from "./pages/NotFound";
+import VirtualTour from "./pages/VirtualTour";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<ServicesHub />} />
+        <Route path="/virtual-tour" element={<VirtualTour />} />
         <Route path="/real-estate" element={<RealEstate />} />
         <Route path="/painters-in-nigeria" element={<ServiceDetail slug="painters-in-nigeria" />} />
         <Route path="/house-painting-services-nigeria" element={<ServiceDetail slug="house-painting-services-nigeria" />} />
