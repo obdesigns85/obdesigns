@@ -52,7 +52,11 @@ export const servicesDetail: ServiceInfo[] = [
     intro: "Interior design at OB Designs & Interiors LTD goes beyond picking colors—we plan how a space is used in Mowe, Lagos, and across Nigeria, then execute the finishing work.",
     detail: "We've worked on living rooms, offices, and full home interiors, combining our painting, POP installation, and exterior wall screeding background with practical decor choices. Because the same company handles the design and the physical finishing work, there is no gap between what is planned and what actually gets built on site.",
     quoteNote: "Interior design pricing depends on scope—a single room versus a full home. Request a free quote to discuss your space.",
-    category: "Interiors",
+    overrideImages: [
+  "/images/ob/service-1.jpg",
+  "/images/ob/service-2",
+    "/images/ob/service-3.jpg",
+  "/images/ob/service-4" ]
   },
   {
     slug: "pop-ceiling-installation-nigeria",
