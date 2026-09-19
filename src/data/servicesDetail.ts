@@ -54,9 +54,10 @@ export const servicesDetail: ServiceInfo[] = [
     quoteNote: "Interior design pricing depends on scope—a single room versus a full home. Request a free quote to discuss your space.",
     overrideImages: [
   "/images/ob/service-1.jpg",
-  "/images/ob/service-2",
-    "/images/ob/service-3.jpg",
-  "/images/ob/service-4" ]
+  "/images/ob/service-2.jpg",
+  "/images/ob/service-3.jpg",
+  "/images/ob/service-4.jpg",
+],
   },
   {
     slug: "pop-ceiling-installation-nigeria",
