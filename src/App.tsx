@@ -27,6 +27,7 @@ export default function App() {
         <Route path="/projects" element={<Projects />} />
         <Route path="/consultation" element={<Consultation />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/real-estate" element={<ServiceDetail slug="real-estate" />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
