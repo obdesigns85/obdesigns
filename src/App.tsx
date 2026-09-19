@@ -7,6 +7,7 @@ import Consultation from "./pages/Consultation";
 import Contact from "./pages/Contact";
 import ServicesHub from "./pages/ServicesHub";
 import ServiceDetail from "./pages/ServiceDetail";
+import RealEstate from "./pages/RealEstate";
 import NotFound from "./pages/NotFound";
 
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<ServicesHub />} />
+        <Route path="/real-estate" element={<RealEstate />} />
         <Route path="/painters-in-nigeria" element={<ServiceDetail slug="painters-in-nigeria" />} />
         <Route path="/house-painting-services-nigeria" element={<ServiceDetail slug="house-painting-services-nigeria" />} />
         <Route path="/exterior-painting-nigeria" element={<ServiceDetail slug="exterior-painting-nigeria" />} />
@@ -27,7 +29,6 @@ export default function App() {
         <Route path="/projects" element={<Projects />} />
         <Route path="/consultation" element={<Consultation />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/real-estate" element={<ServiceDetail slug="real-estate" />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
