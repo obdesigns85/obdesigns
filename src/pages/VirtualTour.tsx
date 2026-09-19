@@ -25,9 +25,9 @@ export default function VirtualTour() {
         <h1 style={{ fontFamily: "Fraunces, serif", fontSize: "clamp(1.8rem, 4vw, 2.5rem)", color: "#F3ECE1", margin: "0 0 1rem" }}>
           Step inside our work
         </h1>
-        <p style={{ fontFamily: "Inter, sans-serif", color: "#F3ECE199", marginBottom: "1.5rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-          <Move size={16} /> Drag left or right to look around the room.
-        </p>
+<p style={{ fontFamily: "Inter, sans-serif", color: "#F3ECE199", marginBottom: "1.5rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+  <Move size={16} /> Drag to look around. Pinch or scroll to zoom.
+</p>
 
         {activeScene && <PanoramaViewer image={activeScene.image} />}
 
