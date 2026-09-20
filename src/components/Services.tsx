@@ -29,7 +29,7 @@ export default function ServiceDetail({ slug }: { slug: string }) {
             address: business.address,
           },
           areaServed: "Nigeria",
-          url: `https://obdesigns.vercel.app/${service.slug}`,
+          url: `https://obdesigns.com.ng/${service.slug}`,
         }
       : {},
   );
