@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Maximize2, X } from "lucide-react";
-import "../styles/featuredWork.css";
+import "../../styles/featuredWork.css";
 
 const featuredImages = [
   { src: "/images/ob/featured-1.jpg", alt: "OB Designs & Interiors featured project 1" },
