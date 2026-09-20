@@ -15,13 +15,13 @@ interface Service {
 const quickServices: Service[] = [
   { 
     title: "Professional Painting", 
-    location: "Mowe & Nationwide", 
+    location: "Nationwide", 
     image: "/images/ob/painting-4.jpg", 
     slug: "painters-in-nigeria" 
   },
   { 
     title: "Exterior Wall Screeding", 
-    location: "Ogun State", 
+    location: "Nationwide", 
     image: "/images/ob/screeding-1.jpg", 
     slug: "wall-screeding-nigeria" 
   },
@@ -33,7 +33,7 @@ const quickServices: Service[] = [
   },
   { 
     title: "Interior Design & Finishing", 
-    location: "Lagos & Environs", 
+    location: "Nationwide", 
     image: "/images/ob/interior-2.jpg", 
     slug: "interior-designers-in-nigeria" 
   },
