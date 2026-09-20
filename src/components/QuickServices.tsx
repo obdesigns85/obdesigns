@@ -16,7 +16,7 @@ const quickServices: Service[] = [
   { 
     title: "Professional Painting", 
     location: "Mowe & Nationwide", 
-    image: "/images/ob/painting-2.jpg", 
+    image: "/images/ob/painting-4.jpg", 
     slug: "painters-in-nigeria" 
   },
   { 
@@ -40,7 +40,7 @@ const quickServices: Service[] = [
   { 
     title: "Real Estate & Land Consultancy", 
     location: "Nationwide", 
-    image: "/images/ob/realestate-1.jpg", 
+    image: "/images/ob/real-estate-1.jpg", 
     slug: "real-estate" 
   },
 ];
