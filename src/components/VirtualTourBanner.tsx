@@ -6,18 +6,18 @@ import "../styles/tourBanner.css";
 export default function VirtualTourBanner() {
   return (
     <section className="tourBanner">
-      <div className="tourBannerPanel">
+      <div className="tourBannerFrame">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
-          className="tourBannerPanelInner"
+          transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
+          className="tourBannerPanel"
         >
           <div className="tourBannerMarker">
-            <span>01</span>
+            <span className="tourBannerMarkerNumber">01</span>
             <span className="tourBannerMarkerLine" />
-            <span>Walkthrough</span>
+            <span className="tourBannerMarkerLabel">Walkthrough</span>
           </div>
 
           <h2 className="tourBannerTitle">
@@ -28,25 +28,22 @@ export default function VirtualTourBanner() {
 
           <p className="tourBannerBody">
             A continuous scroll through a finished project — entry, living room,
-            master bedroom. Scroll to move. Stop to look around.
+            master bedroom.
           </p>
 
           <Link to="/virtual-tour" className="tourBannerLink">
             Begin the walkthrough
-            <ArrowUpRight size={18} strokeWidth={1.75} />
+            <ArrowUpRight size={16} strokeWidth={1.75} />
           </Link>
         </motion.div>
-      </div>
 
-      <div className="tourBannerMedia">
-        <img
-          src="/frames/frame-001.jpg"
-          alt="Preview of OB Designs & Interiors walkthrough"
-          loading="lazy"
-        />
-        <span className="tourBannerCaption">
-          Entry sequence · OB Designs &amp; Interiors
-        </span>
+        <div className="tourBannerMedia">
+          <img
+            src="/frames/frame-001.jpg"
+            alt="Preview of OB Designs & Interiors walkthrough"
+            loading="lazy"
+          />
+        </div>
       </div>
     </section>
   );
