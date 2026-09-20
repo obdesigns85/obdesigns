@@ -34,8 +34,10 @@ export default function Nav() {
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    document.body.classList.toggle("sidebar-open", open);
     return () => {
       document.body.style.overflow = "";
+      document.body.classList.remove("sidebar-open");
     };
   }, [open]);
 
@@ -103,7 +105,6 @@ export default function Nav() {
                 ease: [0.32, 0.72, 0, 1],
               }}
             >
-              {/* Red top strip */}
               <div className="navSidebarAccent" />
 
               <div className="navSidebarHeader">
