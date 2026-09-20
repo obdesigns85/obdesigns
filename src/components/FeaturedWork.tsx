@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import "../styles/featuredWork.css"; // Make sure to create this CSS file
+import "./styles/featuredWork.css"; // Make sure to create this CSS file
 
 const featuredImages = [
   { src: "/images/ob/featured-1.jpg", alt: "OB Designs & Interiors featured project 1" },
