@@ -1,6 +1,8 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import "../../styles/featuredWork.css"; // Make sure to create this CSS file
+import { Maximize2, X } from "lucide-react";
+import "../styles/featuredWork.css";
 
 const featuredImages = [
   { src: "/images/ob/featured-1.jpg", alt: "OB Designs & Interiors featured project 1" },
@@ -10,6 +12,8 @@ const featuredImages = [
 ];
 
 export default function FeaturedWork() {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   return (
     <section id="work" style={{ background: "var(--off-white)", padding: "4rem 1.5rem 5rem" }}>
       <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
@@ -30,7 +34,7 @@ export default function FeaturedWork() {
           </Link>
         </div>
 
-        {/* Grid - Now handled by CSS class for responsiveness */}
+        {/* Grid */}
         <div className="featuredWorkGrid">
           {featuredImages.map((img, i) => (
             <motion.div
@@ -40,21 +44,58 @@ export default function FeaturedWork() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="featuredWorkCard"
-              whileHover={{ borderColor: "var(--gold)" }}
+              onClick={() => setSelectedImage(img.src)}
             >
-              <motion.img
+              <img
                 src={img.src}
                 alt={img.alt}
                 loading="lazy"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.4 }}
                 className="featuredWorkImage"
               />
+              
+              {/* Overlay with zoom icon */}
+              <div className="featuredWorkOverlay">
+                <div className="featuredWorkIconWrapper">
+                  <Maximize2 size={20} color="var(--black)" />
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
 
       </div>
+
+      {/* Lightbox Modal */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="lightboxBackdrop"
+            onClick={() => setSelectedImage(null)} // Click outside to close
+          >
+            <button 
+              className="lightboxClose" 
+              onClick={() => setSelectedImage(null)}
+              aria-label="Close image"
+            >
+              <X size={24} color="white" />
+            </button>
+            
+            <motion.img
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              src={selectedImage}
+              alt="Expanded project view"
+              className="lightboxImage"
+              onClick={(e) => e.stopPropagation()} // Prevent close when clicking the image itself
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
-}
+              }
