@@ -1,0 +1,33 @@
+name: Extract Video Frames
+on:
+  push:
+    paths:
+      - 'public/videos/tour-raw.mp4'
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Extract 50 frames
+        run: |
+          mkdir -p public/frames
+          # Get video duration
+          DURATION=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 public/videos/tour-raw.mp4)
+          # Calculate fps to get ~50 frames
+          FPS=$(echo "scale=4; 50 / $DURATION" | bc)
+          # Extract frames at that fps, scaled to 720p width
+          ffmpeg -i public/videos/tour-raw.mp4 -vf "fps=$FPS,scale=720:-2" -q:v 4 public/frames/frame-%03d.jpg
+          echo "Extracted $(ls public/frames | wc -l) frames"
+
+      - name: Commit frames
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add public/frames
+          git commit -m "Auto-extract tour frames" || echo "No changes"
+          git push
