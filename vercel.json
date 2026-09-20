@@ -1,15 +1,4 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
-  "redirects": [
-    {
-      "source": "/floor-screeding-nigeria",
-      "destination": "/wall-screeding-nigeria",
-      "permanent": true
-    }
-  ]
-}
-
-{
   "headers": [
     {
       "source": "/frames/(.*)",
@@ -30,4 +19,4 @@
       ]
     }
   ]
-},
+}
