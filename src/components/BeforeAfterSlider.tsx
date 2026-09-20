@@ -22,30 +22,33 @@ export default function BeforeAfterSlider({ before, after, alt = "Project" }: Pr
 
   function onPointerDown(e: React.PointerEvent) {
     dragging.current = true;
+    // Capture the pointer so the drag continues even if the user moves off the handle
+    e.currentTarget.setPointerCapture(e.pointerId);
     updateFromClientX(e.clientX);
   }
+
   function onPointerMove(e: React.PointerEvent) {
-    if (dragging.current) updateFromClientX(e.clientX);
+    if (dragging.current) {
+      updateFromClientX(e.clientX);
+    }
   }
-  function endDrag() {
+
+  function endDrag(e: React.PointerEvent) {
     dragging.current = false;
+    e.currentTarget.releasePointerCapture(e.pointerId);
   }
 
   return (
     <div
       ref={containerRef}
-      onPointerDown={onPointerDown}
-      onPointerMove={onPointerMove}
-      onPointerUp={endDrag}
-      onPointerLeave={endDrag}
       style={{
         position: "relative",
         aspectRatio: "4 / 3",
         overflow: "hidden",
         userSelect: "none",
-        cursor: "ew-resize",
         background: "rgba(14, 13, 12, 0.05)",
-        touchAction: "none",
+        // FIX 1: Allow the browser to handle vertical scrolling naturally
+        touchAction: "pan-y", 
       }}
     >
       <img
@@ -68,42 +71,62 @@ export default function BeforeAfterSlider({ before, after, alt = "Project" }: Pr
         }}
       />
 
+      {/* FIX 2: Wrap the handle in a larger, invisible touch target */}
       <div
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={endDrag}
+        onPointerCancel={endDrag}
         style={{
           position: "absolute",
           top: 0,
           bottom: 0,
           left: `${position}%`,
-          width: "2px",
-          background: "var(--gold)",
-          transform: "translateX(-1px)",
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: `${position}%`,
-          transform: "translate(-50%, -50%)",
-          width: 36,
-          height: 36,
-          borderRadius: "999px",
-          background: "var(--gold)",
+          transform: "translateX(-50%)",
+          width: "48px", // Big enough for a thumb, invisible to the eye
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          boxShadow: "0 4px 12px rgba(14, 13, 12, 0.4)",
+          cursor: "ew-resize",
+          // FIX 3: Only disable touch actions on the handle itself
+          touchAction: "none", 
+          zIndex: 10,
         }}
       >
-        <Move size={16} color="var(--black)" />
+        {/* Visual Line */}
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            bottom: 0,
+            width: "2px",
+            background: "var(--gold)",
+          }}
+        />
+        
+        {/* Visual Handle Button */}
+        <div
+          style={{
+            width: 36,
+            height: 36,
+            borderRadius: "999px",
+            background: "var(--gold)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxShadow: "0 4px 12px rgba(14, 13, 12, 0.4)",
+          }}
+        >
+          <Move size={16} color="var(--black)" />
+        </div>
       </div>
 
-      <span style={{ position: "absolute", top: 8, left: 8, background: "rgba(14, 13, 12, 0.85)", color: "var(--off-white)", fontSize: "0.65rem", padding: "0.25rem 0.5rem", fontFamily: "Inter, sans-serif", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+      <span style={{ position: "absolute", top: 8, left: 8, background: "rgba(14, 13, 12, 0.85)", color: "var(--off-white)", fontSize: "0.65rem", padding: "0.25rem 0.5rem", fontFamily: "Inter, sans-serif", letterSpacing: "0.05em", textTransform: "uppercase", zIndex: 20 }}>
         Before
       </span>
-      <span style={{ position: "absolute", top: 8, right: 8, background: "rgba(229, 57, 53, 0.9)", color: "var(--off-white)", fontSize: "0.65rem", padding: "0.25rem 0.5rem", fontFamily: "Inter, sans-serif", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+      <span style={{ position: "absolute", top: 8, right: 8, background: "rgba(229, 57, 53, 0.9)", color: "var(--off-white)", fontSize: "0.65rem", padding: "0.25rem 0.5rem", fontFamily: "Inter, sans-serif", letterSpacing: "0.05em", textTransform: "uppercase", zIndex: 20 }}>
         After
       </span>
     </div>
   );
-        }
+}
