@@ -379,3 +379,13 @@
     padding: 1rem 1.25rem 1.25rem;
   }
 }
+
+/* =============================
+   Sticky CTA — hide when sidebar is open
+   ============================= */
+
+body.sidebar-open .stickyCta {
+  transform: translateY(120%) !important;
+  pointer-events: none;
+  opacity: 0;
+}
