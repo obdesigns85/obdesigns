@@ -17,7 +17,7 @@ export default function VirtualTourBanner() {
           <div className="tourBannerMarker">
          
       
-            <span className="tourBannerMarkerNumber">Walkthrough</span>
+            <span className="tourBannerMarkerNumber">Take a Virtual Tour</span>
           </div>
 
           <h2 className="tourBannerTitle">
