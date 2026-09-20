@@ -6,7 +6,7 @@ export default function TourViewer({ image, title }: { image: string; title: str
   const [active, setActive] = useState(false);
 
   return (
-    <div style={{ position: "relative", width: "100%", aspectRatio: "4 / 3", background: "#000", overflow: "hidden" }}>
+    <div style={{ position: "relative", width: "100%", aspectRatio: "16 / 9", background: "#000", overflow: "hidden" }}>
       {active ? (
         <>
           <PanoramaViewer image={image} />
