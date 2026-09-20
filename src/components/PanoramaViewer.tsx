@@ -22,5 +22,6 @@ export default function PanoramaViewer({ image }: { image: string }) {
     };
   }, [image]);
 
-  return <div ref={containerRef} style={{ width: "100%", aspectRatio: "16 / 9", background: "#000" }} />;
+  // CHANGE: width: 100%, height: 100% instead of aspectRatio: "16 / 9"
+  return <div ref={containerRef} style={{ width: "100%", height: "100%", background: "#000" }} />;
 }
