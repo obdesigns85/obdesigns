@@ -4,13 +4,13 @@ on:
   push:
     paths:
       - 'public/videos/tour-raw.mp4'
-  workflow_dispatch:  # <-- adds a manual "Run workflow" button
+  workflow_dispatch:
 
 jobs:
   extract:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # <-- required to push frames back
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -20,13 +20,12 @@ jobs:
       - name: Extract 50 frames
         run: |
           mkdir -p public/frames
-          # Wipe any old frames first
           rm -f public/frames/*.jpg
           DURATION=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 public/videos/tour-raw.mp4)
           echo "Duration: $DURATION seconds"
           FPS=$(awk "BEGIN {print 50 / $DURATION}")
           echo "Extracting at fps=$FPS"
-          ffmpeg -i public/videos/tour-raw.mp4 -vf "fps=$FPS,scale=720:-2" -q:v 4 public/frames/frame-%03d.jpg
+          ffmpeg -i public/videos/tour-raw.mp4 -vf "fps=$FPS" -q:v 2 public/frames/frame-%03d.jpg
           echo "Extracted $(ls public/frames | wc -l) frames"
 
       - name: Commit frames
