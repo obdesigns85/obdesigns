@@ -34,13 +34,13 @@ const quickServices: Service[] = [
   { 
     title: "Interior Design & Finishing", 
     location: "Nationwide", 
-    image: "/images/ob/interior-2.jpg", 
+    image: "/images/ob/interior-4.jpg", 
     slug: "interior-designers-in-nigeria" 
   },
   { 
     title: "Real Estate & Land Consultancy", 
     location: "Nationwide", 
-    image: "/images/ob/real-estate-1.jpg", 
+    image: "/images/ob/aviance-4.jpg", 
     slug: "real-estate" 
   },
 ];
