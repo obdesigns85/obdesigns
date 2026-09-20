@@ -1,0 +1,11 @@
+.tourGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 900px) {
+  .tourGrid {
+    grid-template-columns: 1.7fr 1fr;
+  }
+}
