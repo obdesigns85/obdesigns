@@ -10,6 +10,7 @@ import RealEstateFeature from "../components/RealEstateFeature";
 import Footer from "../components/Footer";
 import StickyCTA from "../components/StickyCTA";
 import { useSEO } from "../lib/useDocumentTitle";
+import VirtualTourBanner from "../components/VirtualTourBanner";
 
 export default function Home() {
   useSEO({
@@ -23,7 +24,8 @@ export default function Home() {
       <Hero />
       <QuickServices />
       <FeaturedWork />
-      <BeforeAfterTeaser />
+ <BeforeAfterTeaser />
+      <VirtualTourBanner />
       <RealEstateFeature />
       <WhyOB />
       <AboutOB />
