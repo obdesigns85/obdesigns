@@ -1,31 +1,116 @@
-/* Mobile First: 2 columns side-by-side */
+/* --- Grid Layout (from previous fix) --- */
 .featuredWorkGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr); 
-  gap: 0.75rem; /* Tighter gap for smaller mobile screens */
+  gap: 0.75rem; 
 }
 
-/* Tablet and up: 3 columns */
 @media (min-width: 768px) {
   .featuredWorkGrid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem; /* Restore the larger gap on bigger screens */
+    gap: 1.25rem; 
   }
 }
 
-/* Card styling matching your original inline styles */
+/* --- Styled Card --- */
 .featuredWorkCard {
+  position: relative;
   overflow: hidden;
   aspect-ratio: 4 / 5;
   background: rgba(14, 13, 12, 0.05);
-  border: 2px solid transparent;
-  transition: border-color 0.3s ease;
-  position: relative;
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Subtle shadow */
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featuredWorkCard:hover {
+  transform: translateY(-4px); /* Lift effect */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .featuredWorkImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block; /* Prevents tiny bottom gap on some browsers */
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.featuredWorkCard:hover .featuredWorkImage {
+  transform: scale(1.05); /* Zoom effect on hover */
+}
+
+/* --- Hover Overlay & Zoom Icon --- */
+.featuredWorkOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2); /* Slight dark tint */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.featuredWorkCard:hover .featuredWorkOverlay {
+  opacity: 1;
+}
+
+.featuredWorkIconWrapper {
+  background-color: var(--gold);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0.8);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.featuredWorkCard:hover .featuredWorkIconWrapper {
+  transform: scale(1); /* Pop in effect */
+}
+
+/* --- Lightbox Styles --- */
+.lightboxBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: rgba(14, 13, 12, 0.95); /* Almost solid black */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  backdrop-filter: blur(8px);
+}
+
+.lightboxImage {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.lightboxClose {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  z-index: 10000;
+}
+
+.lightboxClose:hover {
+  background: rgba(229, 57, 53, 0.9); /* Your red brand color */
 }
