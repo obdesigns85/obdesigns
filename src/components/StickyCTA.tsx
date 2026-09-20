@@ -13,7 +13,6 @@ export default function StickyCTA() {
       const footerRect = footer.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-      // If footer is within the bottom 80px of the viewport, hide the sticky bar
       if (footerRect.top < windowHeight - 80) {
         setVisible(false);
       } else {
@@ -22,13 +21,14 @@ export default function StickyCTA() {
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Run once on mount to check initial position
+    handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <div
+      className="stickyCta"
       style={{
         position: "fixed",
         bottom: 0,
