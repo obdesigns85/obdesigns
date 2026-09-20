@@ -16,31 +16,31 @@ const quickServices: Service[] = [
   { 
     title: "Professional Painting", 
     location: "Mowe & Nationwide", 
-    image: "/images/painting-2.jpg", 
+    image: "/images/ob/painting-2.jpg", 
     slug: "painters-in-nigeria" 
   },
   { 
     title: "Exterior Wall Screeding", 
     location: "Ogun State", 
-    image: "/images/screeding-1.jpg", 
+    image: "/images/ob/screeding-1.jpg", 
     slug: "wall-screeding-nigeria" 
   },
   { 
     title: "POP Ceiling Installation", 
     location: "Nationwide", 
-    image: "/images/pop-2.jpg", 
+    image: "/images/ob/pop-2.jpg", 
     slug: "pop-ceiling-installation-nigeria" 
   },
   { 
     title: "Interior Design & Finishing", 
     location: "Lagos & Environs", 
-    image: "/images/interior-2.jpg", 
+    image: "/images/ob/interior-2.jpg", 
     slug: "interior-designers-in-nigeria" 
   },
   { 
     title: "Real Estate & Land Consultancy", 
     location: "Nationwide", 
-    image: "/images/realestate-1.jpg", 
+    image: "/images/ob/realestate-1.jpg", 
     slug: "real-estate" 
   },
 ];
