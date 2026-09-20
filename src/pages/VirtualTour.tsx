@@ -13,15 +13,18 @@ export default function VirtualTour() {
   });
 
   return (
-    <div style={{ background: "var(--off-white, #F3ECE1)", minHeight: "100vh" }}>
+    <div
+      style={{
+        background: "var(--off-white, #F3ECE1)",
+        minHeight: "100vh",
+      }}
+    >
       <Breadcrumb
         items={[{ label: "Home", to: "/" }, { label: "Virtual Tour" }]}
       />
 
-      {/* Full-bleed scroll-driven tour — no side padding, touches both screen edges */}
       <TourViewer />
 
-      {/* Promotional content — padded, centered column, mobile-first */}
       <div
         style={{
           maxWidth: "700px",
@@ -58,8 +61,9 @@ export default function VirtualTour() {
             marginBottom: "2rem",
           }}
         >
-          Photos only tell part of the story. Scroll through the walkthrough above to move
-          through a real finished space — the way it actually feels to stand in it.
+          Photos only tell part of the story. Scroll through the walkthrough above
+          to move through a real finished space — the way it actually feels to
+          stand in it.
         </p>
 
         <div
@@ -88,8 +92,9 @@ export default function VirtualTour() {
               marginBottom: "1.5rem",
             }}
           >
-            This walkthrough showcases the level of finishing OB Designs & Interiors delivers
-            on every project — from wall treatment to lighting to overall spatial feel.
+            This walkthrough showcases the level of finishing OB Designs &
+            Interiors delivers on every project — from wall treatment to lighting
+            to overall spatial feel.
           </p>
 
           <h3
