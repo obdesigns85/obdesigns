@@ -1,54 +1,52 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import "../styles/tourBanner.css";
 
 export default function VirtualTourBanner() {
   return (
     <section className="tourBanner">
-      {/* Background frame from your walkthrough */}
-      <div className="tourBannerBg">
-        <img
-          src="/frames/frame-001.jpg"
-          alt="Preview of OB Designs & Interiors virtual walkthrough"
-          loading="lazy"
-        />
-      </div>
-
-      <div className="tourBannerGradient" />
-
-      <div className="tourBannerContent">
+      <div className="tourBannerPanel">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
+          className="tourBannerPanelInner"
         >
-          <span className="tourBannerLabel">
-            <span className="tourBannerDot" />
-            Virtual Walkthrough
-          </span>
+          <div className="tourBannerMarker">
+            <span>01</span>
+            <span className="tourBannerMarkerLine" />
+            <span>Walkthrough</span>
+          </div>
 
           <h2 className="tourBannerTitle">
-            Don't just see it.
+            Step inside a home
             <br />
-            <em>Walk through it.</em>
+            we designed and built.
           </h2>
 
-          <p className="tourBannerDesc">
-            Scroll through a real finished home — from the entry, through the
-            living room, into the master bedroom.
+          <p className="tourBannerBody">
+            A continuous scroll through a finished project — entry, living room,
+            master bedroom. Scroll to move. Stop to look around.
           </p>
 
-          <div className="tourBannerActions">
-            <Link to="/virtual-tour" className="tourBannerCta">
-              <Play size={15} fill="currentColor" />
-              Step Inside
-              <ArrowRight size={16} />
-            </Link>
-            <span className="tourBannerMeta">Runs on scroll · No signup</span>
-          </div>
+          <Link to="/virtual-tour" className="tourBannerLink">
+            Begin the walkthrough
+            <ArrowUpRight size={18} strokeWidth={1.75} />
+          </Link>
         </motion.div>
+      </div>
+
+      <div className="tourBannerMedia">
+        <img
+          src="/frames/frame-001.jpg"
+          alt="Preview of OB Designs & Interiors walkthrough"
+          loading="lazy"
+        />
+        <span className="tourBannerCaption">
+          Entry sequence · OB Designs &amp; Interiors
+        </span>
       </div>
     </section>
   );
