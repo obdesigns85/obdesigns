@@ -1,98 +1,104 @@
 /* =============================
-   Virtual Tour Banner — Editorial
+   Virtual Tour Banner — Editorial, compact
    ============================= */
 
 .tourBanner {
+  background: var(--off-white, #f3ece1);
+  padding: 1.25rem 1.25rem 0;
+}
+
+/* Frame that holds both panels */
+.tourBannerFrame {
   display: grid;
   grid-template-columns: 1fr;
   background: #14120f;
+  border-radius: 4px;
   overflow: hidden;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 @media (min-width: 900px) {
-  .tourBanner {
-    grid-template-columns: 1fr 1fr;
-    min-height: 620px;
+  .tourBannerFrame {
+    grid-template-columns: 1.05fr 1fr;
   }
 }
 
 /* ---- Left: text panel ---- */
 .tourBannerPanel {
-  background: #14120f;
+  padding: 2.25rem 1.5rem 2rem;
   display: flex;
-  align-items: center;
-  padding: 3.5rem 1.75rem;
+  flex-direction: column;
+  justify-content: center;
 }
 
 @media (min-width: 900px) {
   .tourBannerPanel {
-    padding: 5rem 4.5rem;
+    padding: 3.25rem 3rem;
   }
 }
 
-.tourBannerPanelInner {
-  max-width: 480px;
-  width: 100%;
-}
-
-/* Section marker */
+/* Marker row */
 .tourBannerMarker {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 0.7rem;
   font-family: "Inter", sans-serif;
-  font-size: 0.68rem;
+  font-size: 0.62rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(243, 236, 225, 0.4);
   font-weight: 500;
-  margin-bottom: 2rem;
+  margin-bottom: 1.4rem;
 }
 
-.tourBannerMarker span:first-child {
+.tourBannerMarkerNumber {
   color: var(--gold, #b7913c);
 }
 
 .tourBannerMarkerLine {
   height: 1px;
-  width: 32px;
-  background: rgba(243, 236, 225, 0.2);
+  width: 24px;
+  background: rgba(243, 236, 225, 0.22);
+}
+
+.tourBannerMarkerLabel {
+  color: rgba(243, 236, 225, 0.5);
 }
 
 /* Headline */
 .tourBannerTitle {
   font-family: "Fraunces", serif;
   font-weight: 400;
-  font-size: clamp(1.75rem, 5.5vw, 2.6rem);
-  line-height: 1.15;
+  font-size: clamp(1.5rem, 5vw, 2.15rem);
+  line-height: 1.16;
   letter-spacing: -0.02em;
   color: var(--off-white, #f3ece1);
-  margin: 0 0 1.5rem;
+  margin: 0 0 1rem;
 }
 
 /* Body */
 .tourBannerBody {
   font-family: "Inter", sans-serif;
-  font-size: 0.95rem;
-  line-height: 1.75;
-  color: rgba(243, 236, 225, 0.62);
-  margin: 0 0 2.25rem;
-  max-width: 40ch;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: rgba(243, 236, 225, 0.6);
+  margin: 0 0 1.6rem;
+  max-width: 38ch;
 }
 
 /* Text-link CTA */
 .tourBannerLink {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: 0.5rem;
   font-family: "Inter", sans-serif;
-  font-size: 0.92rem;
+  font-size: 0.85rem;
   font-weight: 500;
-  letter-spacing: 0.01em;
   color: var(--off-white, #f3ece1);
   text-decoration: none;
-  padding-bottom: 0.4rem;
-  border-bottom: 1px solid rgba(243, 236, 225, 0.35);
+  align-self: flex-start;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid rgba(243, 236, 225, 0.3);
   transition: border-color 0.25s ease, color 0.25s ease;
 }
 
@@ -106,18 +112,19 @@
 }
 
 .tourBannerLink:hover svg {
-  transform: translate(3px, -3px);
+  transform: translate(2px, -2px);
 }
 
 /* ---- Right: image panel ---- */
 .tourBannerMedia {
   position: relative;
   overflow: hidden;
-  min-height: 280px;
+  height: 200px;
 }
 
 @media (min-width: 900px) {
   .tourBannerMedia {
+    height: auto;
     min-height: 100%;
   }
 }
@@ -127,27 +134,5 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: brightness(0.9);
-}
-
-/* Caption — small, bottom-left, like a magazine */
-.tourBannerCaption {
-  position: absolute;
-  bottom: 1rem;
-  left: 1.25rem;
-  right: 1.25rem;
-  font-family: "Inter", sans-serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(243, 236, 225, 0.55);
-  font-weight: 500;
-  pointer-events: none;
-}
-
-@media (min-width: 900px) {
-  .tourBannerCaption {
-    left: 1.5rem;
-    bottom: 1.25rem;
-  }
+  filter: brightness(0.92);
 }
