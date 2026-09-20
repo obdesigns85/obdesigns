@@ -19,7 +19,7 @@ export default function Nav() {
           <Link to="/services">Services</Link>
           <Link to="/real-estate">Real Estate</Link>
           <Link to="/projects">Projects</Link>
-          <Link to="/virtual-tour">360° Tour</Link>
+          <Link to="/virtual-tour">Virtual Tour</Link>
           <Link to="/contact">Contact</Link>
           <Link to="/consultation" className="navCta">Request a Free Quote</Link>
         </nav>
