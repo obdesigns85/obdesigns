@@ -1,145 +1,106 @@
-import { useState, useEffect } from "react";
-import { RotateCw, X } from "lucide-react";
-import PanoramaViewer from "./PanoramaViewer";
+// components/ScrollVideoTour.tsx
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
-export default function TourViewer({ image, title }: { image: string; title: string }) {
-  const [active, setActive] = useState(false);
+export default function ScrollVideoTour() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Lock body scroll when the 360 viewer is open
-  useEffect(() => {
-    if (active) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  // Map scroll progress (0-1) to video timeline
+  useTransform(scrollYProgress, (progress) => {
+    const video = videoRef.current;
+    if (!video || !video.duration) return;
+    const targetTime = progress * video.duration;
+    // Only update if we've moved enough to matter (reduces stutter)
+    if (Math.abs(video.currentTime - targetTime) > 0.02) {
+      video.currentTime = targetTime;
     }
-    // Cleanup on unmount
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [active]);
+  });
 
-  // --- FULL SCREEN VIEWER ---
-  if (active) {
-    return (
-      <div style={{ position: "fixed", inset: 0, zIndex: 9999, background: "#000" }}>
-        <PanoramaViewer image={image} />
+  return (
+    <section 
+      ref={containerRef} 
+      style={{ height: "400vh", position: "relative", background: "#000" }}
+    >
+      <div style={{ position: "sticky", top: 0, height: "100vh", overflow: "hidden" }}>
         
-        {/* Floating Exit Button */}
-        <button
-          onClick={() => setActive(false)}
+        <video
+          ref={videoRef}
+          src="/videos/tour.mp4"
+          muted
+          playsInline
+          preload="auto"
           style={{
-            position: "absolute",
-            top: "1.5rem",
-            right: "1.5rem",
-            zIndex: 10000,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            background: "rgba(255, 255, 255, 0.15)",
-            backdropFilter: "blur(8px)",
-            color: "#fff",
-            border: "1px solid rgba(255, 255, 255, 0.3)",
-            width: "48px",
-            height: "48px",
-            borderRadius: "50%",
-            cursor: "pointer",
-            transition: "background 0.2s ease",
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
           }}
-          onMouseOver={(e) => (e.currentTarget.style.background = "rgba(229, 57, 53, 0.8)")}
-          onMouseOut={(e) => (e.currentTarget.style.background = "rgba(255, 255, 255, 0.15)")}
-          aria-label="Exit 360 view"
-        >
-          <X size={24} />
-        </button>
+        />
 
-        {/* User Instruction Hint */}
+        {/* Dark gradient for text readability */}
         <div style={{
           position: "absolute",
-          bottom: "2rem",
-          left: "50%",
-          transform: "translateX(-50%)",
-          background: "rgba(0, 0, 0, 0.6)",
-          color: "#fff",
-          padding: "0.5rem 1rem",
-          borderRadius: "20px",
-          fontSize: "0.8rem",
-          fontFamily: "Inter, sans-serif",
+          inset: 0,
+          background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 45%)",
           pointerEvents: "none",
-          whiteSpace: "nowrap"
-        }}>
-          Drag to look around
-        </div>
-      </div>
-    );
-  }
+        }} />
 
-  // --- THUMBNAIL / PREVIEW STATE ---
-  return (
-    <div style={{ 
-      position: "relative", 
-      width: "100%", 
-      aspectRatio: "16 / 9", 
-      background: "#000", 
-      overflow: "hidden",
-      borderRadius: "12px" // Matches the rest of your site's cards
-    }}>
-      <img 
-        src={image} 
-        alt={title} 
-        style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.7)" }} 
-      />
-      
-      <div style={{ 
-        position: "absolute", 
-        inset: 0, 
-        display: "flex", 
-        flexDirection: "column",
-        alignItems: "center", 
-        justifyContent: "center" 
-      }}>
-        <button
-          onClick={() => setActive(true)}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "0.6rem",
-            background: "var(--gold, #B7913C)",
-            color: "var(--black, #0E0D0C)",
-            border: "none",
-            padding: "1rem 2rem",
-            borderRadius: "8px",
-            fontFamily: "Inter, sans-serif",
-            fontWeight: 700,
-            fontSize: "1rem",
-            cursor: "pointer",
-            boxShadow: "0 8px 24px rgba(0,0,0,0.4)",
-            transition: "transform 0.2s ease",
-          }}
-          onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
-          onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
-        >
-          <RotateCw size={20} /> Step Inside in 360°
-        </button>
-      </div>
-
-      <span
-        style={{
+        {/* Overlay Content */}
+        <div style={{
           position: "absolute",
-          top: "1rem",
-          left: "1rem",
-          background: "rgba(0,0,0,0.6)",
+          bottom: "10%",
+          left: "1.5rem",
+          right: "1.5rem",
           color: "#fff",
-          fontSize: "0.7rem",
-          letterSpacing: "0.05em",
-          textTransform: "uppercase",
-          padding: "0.3rem 0.6rem",
-          borderRadius: "4px",
-          fontFamily: "Inter, sans-serif",
-          backdropFilter: "blur(4px)"
-        }}
-      >
-        360° Immersive View
-      </span>
-    </div>
+        }}>
+          <span style={{
+            fontFamily: "Inter, sans-serif",
+            fontSize: "0.7rem",
+            letterSpacing: "0.15em",
+            textTransform: "uppercase",
+            color: "var(--gold, #B7913C)",
+            fontWeight: 600,
+          }}>
+            Virtual Walkthrough
+          </span>
+          <h2 style={{
+            fontFamily: "Fraunces, serif",
+            fontSize: "clamp(1.8rem, 5vw, 2.8rem)",
+            margin: "0.5rem 0 0.5rem",
+            lineHeight: 1.1,
+          }}>
+            Step inside our work
+          </h2>
+          <p style={{
+            fontFamily: "Inter, sans-serif",
+            fontSize: "0.9rem",
+            opacity: 0.8,
+            maxWidth: "400px",
+            lineHeight: 1.5,
+          }}>
+            Scroll to walk through a space we designed and built.
+          </p>
+        </div>
+
+        {/* Scroll Progress Bar */}
+        <motion.div
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: "3px",
+            background: "var(--gold, #B7913C)",
+            transformOrigin: "0%",
+            scaleX: scrollYProgress,
+          }}
+        />
+      </div>
+    </section>
   );
-}
+            }
